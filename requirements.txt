@@ -1,0 +1,6 @@
+Django
+requests==2.9.1
+telepot
+gunicorn
+django-environ==0.4.0
+
