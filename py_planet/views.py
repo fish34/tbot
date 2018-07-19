@@ -8,7 +8,8 @@ from django.http import HttpResponseForbidden, JsonResponse
 from django.views.generic import View
 from django.conf import settings
 
-from .utils import parse_planetpy_rss
+from .utils import *
+
 
 proxy_url = "http://proxy.server:3128"
 telepot.api._pools = {
@@ -24,9 +25,11 @@ logger = logging.getLogger('telegram.bot')
 def _display_help():
     return render_to_string('help.md')
 
-def _display_planetpy_feed():
-    return render_to_string('feed.md', {'items': parse_planetpy_rss()})
+def _display_bittrex_feed():
+    return render_to_string('feed.md', {'items': crypto()})
 
+def _display_fiat_feed():
+    return render_to_string('feed.md', {'items': fiat()})
 
 class CommandReceiveView(View):
     def post(self, request, bot_token):
@@ -36,7 +39,8 @@ class CommandReceiveView(View):
         commands = {
             '/start': _display_help,
             'help': _display_help,
-            'feed': _display_planetpy_feed,
+            'crypto': _display_bittrex_feed,
+            'fiat': _display_fiat_feed,
         }
 
         def handle(msg):
