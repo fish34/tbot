@@ -1,14 +1,14 @@
 # -*- coding: utf8 -*-
 
-import logging,time,telepot,urllib3,json
+import logging,telepot,urllib3,json
 
-from telepot.loop import OrderedWebhook,MessageLoop
+#from telepot.loop import OrderedWebhook,MessageLoop
 from django.template.loader import render_to_string
 from django.http import HttpResponseForbidden, JsonResponse
 from django.views.generic import View
 from django.conf import settings
-
-from .utils import *
+#from urllib3.contrib.socks import SOCKSProxyManager
+from .utils import crypto,fiat
 
 
 proxy_url = "http://proxy.server:3128"
@@ -16,6 +16,11 @@ telepot.api._pools = {
     'default': urllib3.ProxyManager(proxy_url=proxy_url, num_pools=3, maxsize=10, retries=False, timeout=30),
 }
 telepot.api._onetime_pool_spec = (urllib3.ProxyManager, dict(proxy_url=proxy_url, num_pools=1, maxsize=1, retries=False, timeout=30))
+
+# proxy = SOCKSProxyManager('socks5://188.166.10.168:1080/')
+# telepot.api._pools = {
+#     'default': proxy
+# }
 
 TelegramBot = telepot.Bot(settings.TELEGRAM_BOT_TOKEN)
 

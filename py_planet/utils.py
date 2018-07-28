@@ -28,7 +28,7 @@ def crypto():
                                            })
               j = json.loads(ticker.text)
               item['market'] = r['MarketName']
-              item['ticker'] = round(j['result']['Last'],3)
+              item['ticker'] = round(j['result']['Last'],4)
               items.append(item)
               #return(template.format(r['MarketName'],j['result']['Last']))
   return items
@@ -41,5 +41,5 @@ def fiat():
     print(r.text)
     j=json.loads(r.text)
     for k,v in j.items():
-        items.append({'market':k.replace("_","-"),'ticker':v})
+        items.append({'market':k.replace("_","-"),'ticker':round(v,4)})
     return items
