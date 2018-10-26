@@ -23,9 +23,7 @@ def crypto():
       for r in res:
           if r['MarketCurrency'] in marketcurrencies and r['BaseCurrency'] in basecurrencies:
               item={}
-              ticker = requests.post(public + 'getticker',
-                                     data={"market": r['MarketName']
-                                           })
+              ticker = requests.post(public+'getticker?market='+r['MarketName'])
               j = json.loads(ticker.text)
               item['market'] = r['MarketName']
               item['ticker'] = round(j['result']['Last'],4)
