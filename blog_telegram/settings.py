@@ -94,6 +94,7 @@ STATIC_URL = '/static/'
 
 
 TELEGRAM_BOT_TOKEN = env.str('TELEGRAM_BOT_TOKEN', '')
+FIAT_TOKEN = env.str('FIAT_TOKEN','')
 
 
 LOGGING = {

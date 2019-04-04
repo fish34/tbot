@@ -34,7 +34,7 @@ def _display_bittrex_feed():
     return render_to_string('feed.md', {'items': crypto()})
 
 def _display_fiat_feed():
-    return render_to_string('feed.md', {'items': fiat()})
+    return render_to_string('feed.md', {'items': fiat(settings.FIAT_TOKEN)})
 
 class CommandReceiveView(View):
     def post(self, request, bot_token):

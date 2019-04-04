@@ -3,7 +3,6 @@
 import requests
 import json
 
-
 def crypto():
   items = []
   marketcurrencies = ['ETH','BTC','']
@@ -31,13 +30,13 @@ def crypto():
               #return(template.format(r['MarketName'],j['result']['Last']))
   return items
 
-def fiat():
+def fiat(token):
     items=[]
-    template="http://free.currencyconverterapi.com/api/v5/convert?q={}&compact=ultra"
+    template="http://free.currencyconverterapi.com/api/v5/convert?q={}&compact=ultra&apiKey={}"
     curs="USD_RUB,EUR_RUB"
-    r = requests.get(template.format(curs))
+    r = requests.get(template.format(curs,token))
     print(r.text)
     j=json.loads(r.text)
     for k,v in j.items():
-        items.append({'market':k.replace("_","-"),'ticker':round(v,4)})
+        items.append({'market':k.replace("_","-"),'ticker':round(float(v),2)})
     return items
