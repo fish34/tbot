@@ -1,9 +1,9 @@
 # -*- coding: utf8 -*-
 
+from django.conf.urls import url, include
 from django.contrib import admin
-from django.urls import include, path
 
 urlpatterns = [
-    path(r'^admin/', admin.site.urls),
-    path(r'^planet/', include('py_planet.urls', namespace='planet')),
+    url(r'^admin/', admin.site.urls),
+    url(r'^planet/', include('py_planet.urls', namespace='planet'))
 ]

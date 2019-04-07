@@ -1,7 +1,6 @@
-# -*- coding: utf8 -*-
-
 import requests
 import json
+
 
 def crypto():
   items = []
@@ -40,3 +39,4 @@ def fiat(token):
     for k,v in j.items():
         items.append({'market':k.replace("_","-"),'ticker':round(float(v),2)})
     return items
+
